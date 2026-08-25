@@ -31,3 +31,8 @@ Se implementó la generación dinámica del catálogo mediante la directiva `v-f
 Agregué un botón llamado "Me interesa" dentro de cada tarjeta de producto (`ProductCard.vue`). 
 
 Cuando el usuario presiona este botón, el componente hijo emite un evento personalizado mediante `defineEmits(['interes'])`, enviando la información del producto. El componente padre (`ProductosView.vue`) escucha este evento con `@interes="agregarInteres"` y ejecuta una función que guarda el nombre del producto en un arreglo reactivo. Esto hace que en la parte superior del catálogo se actualice automáticamente un contador y una lista con los productos seleccionados por el usuario.
+
+## Parte E - Formulario y validación
+Implementé el formulario de contacto en la vista `ContactoView.vue` solicitando los 5 campos requeridos (`nombre`, `email`, `telefono`, `comuna` y `mensaje`), todos vinculados mediante la directiva `v-model`.
+
+Antes de procesar el envío, se validan los datos con JavaScript: si falta algún campo o el correo no incluye un formato válido, se muestra un mensaje de alerta en pantalla. Cuando todos los campos son válidos, el formulario se oculta y la aplicación despliega un cuadro de confirmación con el resumen de la información ingresada.
