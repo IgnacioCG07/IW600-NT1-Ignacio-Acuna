@@ -26,3 +26,8 @@ En la vista padre `ProductosView.vue` definí un arreglo con 6 productos pertene
 
 ## Parte C - Listas y condicionales
 Se implementó la generación dinámica del catálogo mediante la directiva `v-for`, recorriendo la propiedad computada `productosFiltrados`. Para la lógica condicional se incorporó un filtro de selección por comuna (`v-model="comunaSeleccionada"`). Mediante las directivas `v-if` y `v-else`, si la lista de productos filtrados contiene elementos, se renderizan las tarjetas de producto; en caso de que no existan resultados para la comuna seleccionada (por ejemplo, al elegir "Bulnes"), se despliega un mensaje que informa al usuario que no hay productos disponibles.
+
+## Parte D - Comunicación mediante Emit
+Agregué un botón llamado "Me interesa" dentro de cada tarjeta de producto (`ProductCard.vue`). 
+
+Cuando el usuario presiona este botón, el componente hijo emite un evento personalizado mediante `defineEmits(['interes'])`, enviando la información del producto. El componente padre (`ProductosView.vue`) escucha este evento con `@interes="agregarInteres"` y ejecuta una función que guarda el nombre del producto en un arreglo reactivo. Esto hace que en la parte superior del catálogo se actualice automáticamente un contador y una lista con los productos seleccionados por el usuario.

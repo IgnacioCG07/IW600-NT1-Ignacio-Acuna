@@ -2,6 +2,16 @@
   <div class="productos-container">
     <h1>Catálogo de Productos - Mercado Ñuble Digital</h1>
 
+    <!-- Panel de resumen de productos de interés -->
+    <div class="resumen-interes">
+      <p>Productos de tu interés: <strong>{{ productosInteresados.length }}</strong></p>
+      <ul v-if="productosInteresados.length > 0">
+        <li v-for="(nombre, index) in productosInteresados" :key="index">
+          {{ nombre }}
+        </li>
+      </ul>
+    </div>
+
     <!-- Controles de filtrado -->
     <div class="filtro-container">
       <label for="comuna-select"><strong>Filtrar por comuna:</strong></label>
@@ -12,7 +22,7 @@
         <option value="El Carmen">El Carmen</option>
         <option value="Chillán">Chillán</option>
         <option value="Coihueco">Coihueco</option>
-        <option value="Bulnes">Bulnes</option> <!-- Opción sin productos para probar el v-else -->
+        <option value="Bulnes">Bulnes</option>
       </select>
     </div>
 
@@ -21,11 +31,13 @@
       <ProductCard
         v-for="producto in productosFiltrados"
         :key="producto.id"
+        :id="producto.id"
         :nombre="producto.nombre"
         :categoria="producto.categoria"
         :productor="producto.productor"
         :comuna="producto.comuna"
         :precio="producto.precio"
+        @interes="agregarInteres"
       />
     </div>
 
@@ -40,10 +52,18 @@
 import { ref, computed } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
 
-// Estado del filtro
+// Estado para el filtro y para guardar los productos marcados
 const comunaSeleccionada = ref('todas')
+const productosInteresados = ref([])
 
-// Arreglo de datos
+// Función que maneja el evento emitido desde el componente hijo
+const agregarInteres = (producto) => {
+  if (!productosInteresados.value.includes(producto.nombre)) {
+    productosInteresados.value.push(producto.nombre)
+  }
+}
+
+// Arreglo de productos
 const productos = ref([
   {
     id: 1,
@@ -95,7 +115,6 @@ const productos = ref([
   }
 ])
 
-// Propiedad computada para filtrar la lista según la comuna seleccionada
 const productosFiltrados = computed(() => {
   if (comunaSeleccionada.value === 'todas') {
     return productos.value
@@ -109,6 +128,19 @@ const productosFiltrados = computed(() => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+.resumen-interes {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.resumen-interes ul {
+  margin-top: 0.5rem;
+  padding-left: 1.2rem;
 }
 
 .filtro-container {
