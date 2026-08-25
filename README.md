@@ -24,7 +24,13 @@ Para construir la estructura inicial y la navegación de la aplicación:
 ---
 
 ## Parte B - Componentes y Props
-*Pendiente de desarrollo.*
+
+Para la construcción del catálogo de productos:
+1. **Componente Reutilizable**: Se creó el componente [ProductCard.vue](file:///e:/Proyectos/oli/PRUEBA/src/components/ProductCard.vue) en la carpeta `src/components/` para presentar individualmente la información de cada artículo de forma consistente.
+2. **Uso de Props**:
+   - El componente hijo `ProductCard` recibe mediante **props** el objeto `product` (con propiedades como `name`, `category`, `producer`, `commune`, `price` y `availability`) y un booleano `isInterested`.
+   - Estos datos son enviados desde la vista padre [ProductosView.vue](file:///e:/Proyectos/oli/PRUEBA/src/views/ProductosView.vue), la cual define y almacena el listado de productos en una estructura de datos reactiva (`ref`) con 6 productos correspondientes a 6 comunas diferentes de la Región de Ñuble (San Carlos, Coihueco, Pinto, Quirihue, El Carmen y Chillán).
+   - En la vista padre se utiliza `v-for` para iterar dinámicamente sobre la colección y renderizar cada tarjeta enviando las propiedades correspondientes.
 
 ---
 
