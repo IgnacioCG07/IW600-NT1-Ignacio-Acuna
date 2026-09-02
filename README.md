@@ -42,3 +42,29 @@ Para la propuesta visual elegí una paleta de colores verde y neutra, alineada c
 
 ## Reflexión final
 La mayor dificultad durante el desarrollo fue estructurar la comunicación entre componentes mediante `$emit` para mantener actualizado el resumen de interés en tiempo real cuando el usuario interactúa con los productos. Lo resolví revisando la documentación oficial de Vue 3, pasando el objeto del producto como argumento en la función de emisión y manipulando un arreglo reactivo en la vista padre para evitar duplicados.
+
+---
+
+## Actividad 5 - Condicionales y Listas Dinámicas
+
+Se creó el componente `Tareas.vue` en `src/components/` y la vista `TareasView.vue` en `src/views/`, accesible desde la ruta `/tareas` y el menú de navegación.
+
+### Directivas aplicadas
+
+| Directiva | Uso |
+|---|---|
+| `v-model` | Vinculación bidireccional del input con la variable reactiva `nuevaTarea` / `nuevoNombre` / `nuevoApellido` |
+| `v-for` | Renderizado dinámico de cada tarea y persona del arreglo |
+| `v-show` | Alterna la visibilidad de la lista (el elemento permanece en el DOM) |
+| `v-if` | Muestra el mensaje "No hay tareas" cuando el arreglo está vacío |
+| `v-else-if` | Muestra mensaje "lista oculta" cuando hay elementos pero `v-show` está en `false` |
+| `v-else` | Muestra "lista vacía" cuando no hay personas registradas |
+| `@click` / `@keyup.enter` | Eventos para agregar y eliminar elementos |
+| `:key` | Identificador único para cada ítem de `v-for` |
+
+### Archivos creados o modificados
+
+- `src/components/Tareas.vue` — componente principal con la lógica de la actividad
+- `src/views/TareasView.vue` — vista que importa y muestra el componente
+- `src/router/index.js` — ruta `/tareas` registrada
+- `src/App.vue` — link "Tareas" agregado al menú de navegación

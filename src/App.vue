@@ -13,6 +13,7 @@
           <router-link to="/productos" class="nav-link" active-class="active-link">Productos</router-link>
           <router-link to="/productores" class="nav-link" active-class="active-link">Productores</router-link>
           <router-link to="/contacto" class="nav-link" active-class="active-link">Contacto</router-link>
+          <router-link to="/tareas" class="nav-link" active-class="active-link">Tareas</router-link>
         </nav>
 
         <div class="header-actions">
